@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.ola.mtracks.models.Tags;
 import com.ola.mtracks.repositories.TagsRepository;
+
+import lombok.extern.slf4j.Slf4j;
 @Service
+@Slf4j
 public class TagsServiceImpl implements ITagsService {
 	
 	@Autowired
@@ -25,6 +28,7 @@ public class TagsServiceImpl implements ITagsService {
 
 	@Override
 	public Tags updateTags(Tags tag) {
+		
 		return this.tagsRepository.save(tag);
 	}
 

@@ -34,6 +34,54 @@ public class Tracks {
 	private long noOfPlays;
 	@Column(name="likes")
 	private long likes;
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getTrackTitle() {
+		return trackTitle;
+	}
+	public void setTrackTitle(String trackTitle) {
+		this.trackTitle = trackTitle;
+	}
+	public Set<Playlist> getPlayList() {
+		return playList;
+	}
+	public void setPlayList(Set<Playlist> playList) {
+		this.playList = playList;
+	}
+	public String getSinger() {
+		return singer;
+	}
+	public void setSinger(String singer) {
+		this.singer = singer;
+	}
+	public String getActor() {
+		return actor;
+	}
+	public void setActor(String actor) {
+		this.actor = actor;
+	}
+	public String getActress() {
+		return actress;
+	}
+	public void setActress(String actress) {
+		this.actress = actress;
+	}
+	public long getNoOfPlays() {
+		return noOfPlays;
+	}
+	public void setNoOfPlays(long noOfPlays) {
+		this.noOfPlays = noOfPlays;
+	}
+	public long getLikes() {
+		return likes;
+	}
+	public void setLikes(long likes) {
+		this.likes = likes;
+	}
 	
 	
 

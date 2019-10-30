@@ -1,5 +1,8 @@
 package com.ola.mtracks.controllers;
 
+import java.text.ParseException;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ola.mtracks.dto.TracksDto;
 import com.ola.mtracks.models.Tracks;
 import com.ola.mtracks.service.ITracksService;
 
@@ -19,21 +23,28 @@ public class TracksController {
 
 	@Autowired
 	private ITracksService tracksService;
+	@Autowired
+	private ModelMapper modelMapper;
 
 	@PostMapping("/add")
-	public Tracks addTracks(@RequestBody Tracks tracks) {
-		return this.tracksService.addTracks(tracks);
+	public TracksDto addTracks(@RequestBody TracksDto tracksDto) throws ParseException {
+		Tracks tracks = convertToEntity(tracksDto);
+		Tracks createdTracks = this.tracksService.addTracks(tracks);
+		return convertToDto(createdTracks);
 	}
 
 	@GetMapping("/get/{tracksId}")
-	public Tracks retreiveTracks(Long tracksId) {
-		return this.tracksService.getTracks(tracksId);
+	public TracksDto retreiveTracks(Long tracksId) {
+		Tracks fetchedTracks = this.tracksService.getTracks(tracksId);
+		return convertToDto(fetchedTracks);
 	}
 	
 
 	@PutMapping("/update")
-	public Tracks updateTracks(@RequestBody Tracks tracks) {
-		return this.tracksService.updateTracks(tracks);
+	public TracksDto updateTracks(@RequestBody TracksDto tracksDto) throws ParseException {
+		Tracks tracks = convertToEntity(tracksDto);
+		Tracks updatedTracks = this.tracksService.addTracks(tracks);
+		return convertToDto(updatedTracks);
 	}
 
 	@DeleteMapping("/delete/{tracksId}")
@@ -44,30 +55,35 @@ public class TracksController {
 	}
 
 	@GetMapping("/find/singers/{singer}")
-	public Tracks findTracksBySinger(@PathVariable String singer) {
+	public TracksDto findTracksBySinger(@PathVariable String singer) {
 
-		return this.tracksService.findTracksBySinger(singer);
+		Tracks fetchedTracks = this.tracksService.findTracksBySinger(singer);
+		return convertToDto(fetchedTracks);
 
 	}
 
 	@GetMapping("/find/actors/{actor}")
-	public Tracks findTracksByActor(@PathVariable String actor) {
+	public TracksDto findTracksByActor(@PathVariable String actor) {
 
-		return this.tracksService.findTracksByActor(actor);
+		Tracks fetchedTracks = this.tracksService.findTracksByActor(actor);
+		return convertToDto(fetchedTracks);
 
 	}
 
 	@GetMapping("/find/actresses/{actress}")
-	public Tracks findTracksByActress(@PathVariable String actress) {
+	public TracksDto findTracksByActress(@PathVariable String actress) {
+		
+		Tracks fetchedTracks = this.tracksService.findTracksByActress(actress);
+		return convertToDto(fetchedTracks);
 
-		return this.tracksService.findTracksByActress(actress);
 
 	}
 
 	@GetMapping("/find/titles/{trackTitle}")
-	public Tracks findTracksByTrackTitle(@PathVariable String trackTitle) {
+	public TracksDto findTracksByTrackTitle(@PathVariable String trackTitle) {
 
-		return this.tracksService.findTracksByTrackTitle(trackTitle);
+		Tracks fetchedTracks = this.tracksService.findTracksByTrackTitle(trackTitle);
+		return convertToDto(fetchedTracks);
 
 	}
 	
@@ -93,5 +109,17 @@ public class TracksController {
 	public Long findNoOfLikesByTrackTitle(@PathVariable String trackTitle) {
 		
 		return this.tracksService.findNoOfLikesByTrackTitle(trackTitle);
+	}
+	
+	private TracksDto convertToDto(Tracks tracks) {
+		TracksDto tracksDto = modelMapper.map(tracks, TracksDto.class);
+		//tracksDto.setGender(user.getGender().getGender());
+	    return tracksDto;
+	}
+	
+	private Tracks convertToEntity(TracksDto tracksDto) throws ParseException {
+		Tracks tracks = modelMapper.map(tracksDto, Tracks.class);
+		//user.setGender(Gender.valueOf(tracksDto.getGender()));
+	    return tracks;
 	}
 }
