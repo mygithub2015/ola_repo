@@ -1,11 +1,12 @@
 package com.ola.mtracks.dto;
 
+import com.ola.mtracks.models.Tags;
 
 public class PlaylistDto {
 
 	private Long id;
 	
-	private Long tagsId;
+	private Tags tags;
 
 	public Long getId() {
 		return id;
@@ -15,18 +16,21 @@ public class PlaylistDto {
 		this.id = id;
 	}
 
-	public Long getTagsId() {
-		return tagsId;
+	
+	public Tags getTags() {
+		return tags;
 	}
 
-	public void setTagsId(Long tagsId) {
-		this.tagsId = tagsId;
+	public void setTags(Tags tags) {
+		this.tags = tags;
 	}
 
 	@Override
 	public String toString() {
-		return "PlaylistDto [id=" + id + ", tagsId=" + tagsId + "]";
+		return "PlaylistDto [id=" + id + ", tags=" + tags + "]";
 	}
+
+	
 
 	
 	

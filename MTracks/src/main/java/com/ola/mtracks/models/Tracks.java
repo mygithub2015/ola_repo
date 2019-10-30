@@ -1,16 +1,21 @@
 package com.ola.mtracks.models;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Table(name="tracks")
@@ -22,8 +27,13 @@ public class Tracks {
 	private long id;
 	@Column(name="track_title")
 	private String trackTitle;
-	@ManyToMany(mappedBy="tracks")
-	private Set<Playlist> playList;
+	@ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+        name = "Tracks_Playlist", 
+        joinColumns = { @JoinColumn(name = "track_id", referencedColumnName = "id") }, 
+        inverseJoinColumns = { @JoinColumn(name = "playlist_id", referencedColumnName = "id")})
+//	@ManyToMany(mappedBy="tracks")
+	private Set<Playlist> playList = new HashSet<>();
 	@Column(name="singer")
 	private String singer;
 	@Column(name="actor")
@@ -34,6 +44,7 @@ public class Tracks {
 	private long noOfPlays;
 	@Column(name="likes")
 	private long likes;
+	
 	public long getId() {
 		return id;
 	}

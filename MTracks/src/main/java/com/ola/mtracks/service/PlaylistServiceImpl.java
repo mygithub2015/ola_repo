@@ -33,14 +33,17 @@ public class PlaylistServiceImpl implements IPlaylistService {
 		 this.playListRepository.deleteById(playlistId);
 	}
 
-	@Override
-	public Playlist getPlaylistByTagId(Long tagId) {
-		return this.playListRepository.findByTagId(tagId);
-	}
+	
 
 	@Override
 	public List<Playlist> findAllPlaylists() {
 		return this.playListRepository.findAll();
+	}
+
+	@Override
+	public List<Playlist> getPlaylistByTagId(Long tagId) {
+		return this.playListRepository.findByTagId(tagId);
+
 	}
 
 }

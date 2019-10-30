@@ -1,5 +1,6 @@
 package com.ola.mtracks.dto;
 
+import java.util.List;
 import java.util.Set;
 
 import com.ola.mtracks.models.Playlist;
@@ -25,14 +26,15 @@ public class TracksDto {
 		return trackTitle;
 	}
 	
+	public void setTrackTitle(String trackTitle) {
+		this.trackTitle = trackTitle;
+	}
+	
 	public Set<Playlist> getPlayList() {
 		return playList;
 	}
 	public void setPlayList(Set<Playlist> playList) {
 		this.playList = playList;
-	}
-	public void setTrackTitle(String trackTitle) {
-		this.trackTitle = trackTitle;
 	}
 	public String getSinger() {
 		return singer;
@@ -69,6 +71,7 @@ public class TracksDto {
 		return "TracksDto [id=" + id + ", trackTitle=" + trackTitle + ", playList=" + playList + ", singer=" + singer
 				+ ", actor=" + actor + ", actress=" + actress + ", noOfPlays=" + noOfPlays + ", likes=" + likes + "]";
 	}
+	
 	
 	
 	

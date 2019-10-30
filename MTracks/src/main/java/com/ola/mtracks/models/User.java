@@ -34,7 +34,7 @@ public class User {
 	@OneToOne
 	@JoinColumn(name="playlist_id")
 	private Playlist playList;
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	public void setId(long id) {

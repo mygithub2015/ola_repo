@@ -1,5 +1,6 @@
 package com.ola.mtracks.models;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
@@ -27,12 +30,13 @@ public class Playlist {
 	@OneToOne(mappedBy="playList")
 	private User user;
 	
-	@ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-        name = "Playlist_Tracks", 
-        joinColumns = { @JoinColumn(name = "playlist_id") }, 
-        inverseJoinColumns = { @JoinColumn(name = "track_id") })
-	private Set<Tracks> tracks;
+//	@ManyToMany(cascade = { CascadeType.ALL })
+//    @JoinTable(
+//        name = "Playlist_Tracks", 
+//        joinColumns = { @JoinColumn(name = "playlist_id", referencedColumnName = "id") }, 
+//        inverseJoinColumns = { @JoinColumn(name = "track_id", referencedColumnName = "id")})
+	@ManyToMany(mappedBy="playList")
+	private Set<Tracks> tracks = new HashSet<>();
 	
 	@ManyToOne
 	@JoinColumn(name="tag_id")

@@ -10,7 +10,7 @@ public interface IPlaylistService {
 	Playlist getPlaylist(Long playlistId);
 	Playlist updatePlaylist(Playlist playlist);
 	void deletePlaylist(Long playlistId);
-	Playlist getPlaylistByTagId(Long tagId);
+	List<Playlist> getPlaylistByTagId(Long tagId);
 	List<Playlist> findAllPlaylists();
 
 }

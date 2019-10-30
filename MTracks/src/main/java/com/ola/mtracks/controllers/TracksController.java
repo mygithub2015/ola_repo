@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ola.mtracks.dto.TracksDto;
+import com.ola.mtracks.models.Playlist;
 import com.ola.mtracks.models.Tracks;
+import com.ola.mtracks.service.IPlaylistService;
 import com.ola.mtracks.service.ITracksService;
 
 @RestController
@@ -24,13 +26,19 @@ public class TracksController {
 	@Autowired
 	private ITracksService tracksService;
 	@Autowired
+	private IPlaylistService playlistService;
+	@Autowired
 	private ModelMapper modelMapper;
 
 	@PostMapping("/add")
 	public TracksDto addTracks(@RequestBody TracksDto tracksDto) throws ParseException {
+		System.out.println("TracksDto=> "+tracksDto);
 		Tracks tracks = convertToEntity(tracksDto);
+		System.out.println("tracks=>"+tracks);
 		Tracks createdTracks = this.tracksService.addTracks(tracks);
-		return convertToDto(createdTracks);
+		//tracks.getPlayList().forEach(e->this.playlistService.addPlaylist(e));
+		//return convertToDto(createdTracks);
+		return tracksDto;
 	}
 
 	@GetMapping("/get/{tracksId}")
@@ -114,12 +122,15 @@ public class TracksController {
 	private TracksDto convertToDto(Tracks tracks) {
 		TracksDto tracksDto = modelMapper.map(tracks, TracksDto.class);
 		//tracksDto.setGender(user.getGender().getGender());
+		tracksDto.setPlayList(tracks.getPlayList());
 	    return tracksDto;
 	}
 	
 	private Tracks convertToEntity(TracksDto tracksDto) throws ParseException {
 		Tracks tracks = modelMapper.map(tracksDto, Tracks.class);
-		//user.setGender(Gender.valueOf(tracksDto.getGender()));
+		tracks.setPlayList(tracksDto.getPlayList());
+		tracks.getPlayList().forEach(e-> e.getTracks().add(tracks));
+		
 	    return tracks;
 	}
 }

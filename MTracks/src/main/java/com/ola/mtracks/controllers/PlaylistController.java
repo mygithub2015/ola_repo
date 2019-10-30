@@ -68,21 +68,21 @@ public class PlaylistController {
 	}
 	
 	@GetMapping("/get/tags/{tagsId}")
-	public PlaylistDto findPlaylistByTags(@PathVariable Long tagsId) {
-		Playlist fetchedPlaylist = this.playlistService.getPlaylistByTagId(tagsId);
-		return convertToDto(fetchedPlaylist);
+	public List<PlaylistDto> findPlaylistByTags(@PathVariable Long tagsId) {
+		List<Playlist> fetchedPlaylist = this.playlistService.getPlaylistByTagId(tagsId);
+		return fetchedPlaylist.stream().map(i->convertToDto(i)).collect(Collectors.toList());
 	}
 	
 	private PlaylistDto convertToDto(Playlist playlist) {
 		PlaylistDto playlistDto = modelMapper.map(playlist, PlaylistDto.class);
-		playlistDto.setTagsId(playlist.getTag().getId());
+		//playlistDto.setTagsId(playlist.getTag().getId());
+		playlistDto.setTags(playlist.getTag());
 	    return playlistDto;
 	}
 	
 	private Playlist convertToEntity(PlaylistDto playlistDto) throws ParseException {
 		Playlist playlist = modelMapper.map(playlistDto, Playlist.class);
-		Tags tags = this.tagsService.getTags(playlistDto.getTagsId());
-		playlist.setTag(tags);
+		playlist.setTag(playlistDto.getTags());
 	    return playlist;
 	}
 
