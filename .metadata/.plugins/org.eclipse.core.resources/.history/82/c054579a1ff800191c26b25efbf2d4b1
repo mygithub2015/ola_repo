@@ -1,0 +1,34 @@
+package com.ola.mtracks.service;
+
+import org.springframework.stereotype.Service;
+
+import com.ola.mtracks.models.User;
+
+@Service
+public class UserServiceImpl implements IUserService {
+
+	@Override
+	public User addUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User getUser() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User updateUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deleteUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

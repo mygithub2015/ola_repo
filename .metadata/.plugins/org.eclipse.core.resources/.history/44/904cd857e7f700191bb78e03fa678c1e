@@ -1,0 +1,23 @@
+package com.ola.mtracks.models;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+@Entity
+@Table(name="user")
+@Data
+public class User {
+
+	private long id;
+	
+	private String username;
+	private String emailId;
+	private int age;
+	@Enumerated(EnumType.STRING)
+	private Gender gender; 
+	
+}

@@ -1,0 +1,31 @@
+package com.ola.mtracks.service;
+
+import com.ola.mtracks.models.Tracks;
+
+public class TracksServiceImpl implements ITracksService {
+
+	@Override
+	public Tracks addTracks(Tracks user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Tracks getTracks(Long tracksId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Tracks updateTracks(Tracks user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deleteTracks(Long tracksId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

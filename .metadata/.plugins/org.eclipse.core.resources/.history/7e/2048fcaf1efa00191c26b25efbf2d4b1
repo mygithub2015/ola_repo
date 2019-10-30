@@ -1,0 +1,50 @@
+package com.ola.mtracks.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ola.mtracks.models.Playlist;
+import com.ola.mtracks.service.IPlaylistService;
+
+@RestController
+@RequestMapping("playlist")
+public class PlaylistController {
+	
+	@Autowired
+	private IPlaylistService playlistService;
+	
+	@PostMapping("/add")
+	public Playlist addPlaylist(@RequestBody Playlist playlist) {
+		return this.playlistService.addPlaylist(playlist);
+	}
+	
+	@GetMapping("/get/{playlistId")
+	public Playlist retrievePlaylist(@PathVariable Long playlistId) {
+		return this.playlistService.getPlaylist(playlistId);
+	}
+	
+	@PutMapping("/update")
+	public Playlist updatePlaylist(@RequestBody Playlist playlist) {
+		return this.playlistService.updatePlaylist(playlist);
+	}
+	
+	@DeleteMapping("/delete/{playlistId}")
+	public String deletePlaylist(@PathVariable Long playlistId) {
+		this.playlistService.deletePlaylist(playlistId);
+		return "Playlist with id: "+playlistId+" got deleted successfully!";
+
+	}
+	
+	@GetMapping("/get/tags/{tagsId}")
+	public Playlist findPlaylistByTags(@PathVariable Long tagsId) {
+		return this.playlistService.getPlaylistByTagId(tagsId);
+	}
+
+}

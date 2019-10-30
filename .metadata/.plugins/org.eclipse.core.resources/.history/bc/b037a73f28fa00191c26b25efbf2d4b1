@@ -1,0 +1,5 @@
+package com.ola.mtracks.dto;
+
+public class UserDto {
+
+}

@@ -1,0 +1,10 @@
+package com.ola.mtracks.service;
+
+import com.ola.mtracks.models.Playlist;
+
+public interface IPlaylistService {
+	Playlist addPlaylist(Playlist user);
+	Playlist getPlaylist(Long playlistId);
+	Playlist updatePlaylist(Playlist user);
+	String deletePlaylist(Long playlistId);
+}

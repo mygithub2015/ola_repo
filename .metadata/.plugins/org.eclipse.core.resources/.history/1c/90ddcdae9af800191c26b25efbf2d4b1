@@ -1,0 +1,32 @@
+package com.ola.mtracks.service;
+
+import org.springframework.stereotype.Service;
+
+import com.ola.mtracks.models.Tags;
+@Service
+public class TagsServiceImpl implements ITagsService {
+
+	@Override
+	public Tags addTags(Tags user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Tags getTags(Long tagsId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Tags updateTags(Tags user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteTags(Long tagsId) {
+		// TODO Auto-generated method stub
+	}
+
+}

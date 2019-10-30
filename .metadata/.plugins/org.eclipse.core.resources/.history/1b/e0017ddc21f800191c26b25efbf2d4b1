@@ -1,0 +1,26 @@
+package com.ola.mtracks.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ola.mtracks.models.User;
+import com.ola.mtracks.service.IUserService;
+
+@RestController
+@RequestMapping("user/")
+public class UserController {
+	
+	@Autowired
+	private IUserService userService;
+	
+	@PostMapping("/add")
+	public User addUser(@RequestBody User user) {
+		User addedUser = this.userService.addUser(user);
+		System.out.println("addedUser:" +addedUser);
+		return addedUser;
+	}
+
+}

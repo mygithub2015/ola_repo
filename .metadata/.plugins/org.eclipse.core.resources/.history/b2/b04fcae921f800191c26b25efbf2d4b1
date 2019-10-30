@@ -1,0 +1,10 @@
+package com.ola.mtracks.service;
+
+import com.ola.mtracks.models.Tracks;
+
+public interface ITracksService {
+	Tracks addTracks(Tracks user);
+	Tracks getTracks(Long tracksId);
+	Tracks updateTracks(Tracks user);
+	String deleteTracks(Long tracksId);
+}

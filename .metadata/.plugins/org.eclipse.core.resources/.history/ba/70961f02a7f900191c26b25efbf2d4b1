@@ -1,0 +1,7 @@
+package com.ola.mtracks.converter;
+
+import javax.persistence.AttributeConverter;
+
+public class GenderConverter implements AttributeConverter<Gender, String> {
+
+}

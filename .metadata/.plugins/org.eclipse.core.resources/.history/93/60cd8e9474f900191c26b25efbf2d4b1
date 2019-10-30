@@ -1,0 +1,35 @@
+package com.ola.mtracks.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ola.mtracks.models.Tracks;
+import com.ola.mtracks.service.ITracksService;
+
+@RestController
+@RequestMapping("tracks")
+public class TracksController {
+
+	@Autowired
+	private ITracksService tracksService;
+	
+	@PostMapping("/add")
+	public Tracks addTracks(@RequestBody Tracks tracks) {
+		return this.tracksService.addTracks(tracks);
+	}
+	
+	@GetMapping("/get/{tracksId}")
+	public Tracks retreiveTracks(Long tracksId) {
+		return  this.tracksService.getTracks(tracksId);
+	}
+	
+	@PutMapping("/update")
+	public Tracks updateTracks(@RequestBody Tracks tracks) {
+		return this.tracksService.updateTracks(tracks);
+	}
+}

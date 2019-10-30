@@ -1,0 +1,42 @@
+package com.ola.mtracks.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ola.mtracks.models.Playlist;
+import com.ola.mtracks.repositories.PlaylistRepository;
+@Service
+public class PlaylistServiceImpl implements IPlaylistService {
+
+	@Autowired
+	private PlaylistRepository playListRepository;
+	
+	@Override
+	public Playlist addPlaylist(Playlist playList) {
+		return this.playListRepository.save(playList);
+	}
+
+	@Override
+	public Playlist getPlaylist(Long playlistId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Playlist updatePlaylist(Playlist playlist) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deletePlaylist(Long playlistId) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public Playlist getPlaylistByTrackId(Long trackId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

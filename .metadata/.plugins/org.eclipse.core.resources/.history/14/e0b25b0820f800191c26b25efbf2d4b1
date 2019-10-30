@@ -1,0 +1,5 @@
+package com.ola.mtracks.service;
+
+public interface IPlaylistService {
+
+}

@@ -1,0 +1,24 @@
+package com.ola.mtracks.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ola.mtracks.models.Playlist;
+import com.ola.mtracks.service.IPlaylistService;
+
+@RestController
+@RequestMapping("playlist")
+public class PlaylistController {
+	
+	@Autowired
+	private IPlaylistService playlistService;
+	
+	@PostMapping("/add")
+	public Playlist addPlaylist(Playlist playlist) {
+		return this.playlistService.addPlaylist(playlist);
+	}
+	
+
+}

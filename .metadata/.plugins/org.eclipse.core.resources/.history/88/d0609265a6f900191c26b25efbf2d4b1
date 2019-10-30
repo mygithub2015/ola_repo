@@ -1,0 +1,5 @@
+package com.ola.mtracks.converter;
+
+public class GenreConverter implements AttributeConverter<Category, String> {{
+
+}
