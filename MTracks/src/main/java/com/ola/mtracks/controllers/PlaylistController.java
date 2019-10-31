@@ -47,7 +47,7 @@ public class PlaylistController {
 		return convertToDto(fetchedPlaylist);
 	}
 	
-	@GetMapping("/get/all")
+	@GetMapping("/explore")
 	public List<PlaylistDto> findAllPlaylists(){
 		List<Playlist> playlists = this.playlistService.findAllPlaylists();
 		return playlists.stream().map(p->convertToDto(p)).collect(Collectors.toList());

@@ -15,7 +15,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
-import lombok.ToString;
 
 @Entity
 @Table(name="tracks")
@@ -24,10 +23,10 @@ public class Tracks {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	@Column(name="track_title")
 	private String trackTitle;
-	@ManyToMany(cascade = { CascadeType.ALL })
+	@ManyToMany(cascade = { CascadeType.MERGE })
     @JoinTable(
         name = "Tracks_Playlist", 
         joinColumns = { @JoinColumn(name = "track_id", referencedColumnName = "id") }, 
@@ -45,7 +44,7 @@ public class Tracks {
 	@Column(name="likes")
 	private long likes;
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	public void setId(long id) {

@@ -28,6 +28,7 @@ public class Playlist {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	@OneToOne(mappedBy="playList")
+	@JsonIgnore
 	private User user;
 	
 //	@ManyToMany(cascade = { CascadeType.ALL })
@@ -36,9 +37,11 @@ public class Playlist {
 //        joinColumns = { @JoinColumn(name = "playlist_id", referencedColumnName = "id") }, 
 //        inverseJoinColumns = { @JoinColumn(name = "track_id", referencedColumnName = "id")})
 	@ManyToMany(mappedBy="playList")
+	@JsonIgnore
 	private Set<Tracks> tracks = new HashSet<>();
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="tag_id")
 	private Tags tag;
 
